@@ -72,15 +72,15 @@ class OptionsManager {
     
     // Footer Links
     document.getElementById('help-link').addEventListener('click', () => {
-      chrome.tabs.create({ url: 'https://github.com/your-username/ai-cursor-extension#readme' });
+      chrome.tabs.create({ url: 'https://github.com/codleed/zegoop#readme' });
     });
     
     document.getElementById('github-link').addEventListener('click', () => {
-      chrome.tabs.create({ url: 'https://github.com/your-username/ai-cursor-extension' });
+      chrome.tabs.create({ url: 'https://github.com/codleed/zegoop' });
     });
     
     document.getElementById('feedback-link').addEventListener('click', () => {
-      chrome.tabs.create({ url: 'https://github.com/your-username/ai-cursor-extension/issues' });
+      chrome.tabs.create({ url: 'https://github.com/codleed/zegoop/issues' });
     });
     
     // Auto-save on input changes
