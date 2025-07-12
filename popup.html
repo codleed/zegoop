@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Cursor Settings</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-container">
+    <div class="header">
+      <div class="logo">
+        <span class="logo-icon">🤖</span>
+        <h1>AI Cursor</h1>
+      </div>
+      <div class="version">v1.0.0</div>
+    </div>
+    
+    <div class="main-content">
+      <!-- Mode Toggle -->
+      <div class="section">
+        <div class="toggle-section">
+          <div class="toggle-info">
+            <h3>AI Cursor Mode</h3>
+            <p class="mode-status">Currently: <span id="current-mode">Standard</span></p>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="ai-mode-toggle">
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+      
+      <!-- Quick Stats -->
+      <div class="section">
+        <div class="stats-grid">
+          <div class="stat-item">
+            <span class="stat-number" id="usage-count">0</span>
+            <span class="stat-label">Queries Today</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" id="selected-llm">None</span>
+            <span class="stat-label">Active LLM</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Quick Actions -->
+      <div class="section">
+        <h3>Quick Actions</h3>
+        <div class="action-buttons">
+          <button class="action-btn" id="test-selection">
+            <span class="btn-icon">🧪</span>
+            Test Selection
+          </button>
+          <button class="action-btn" id="open-settings">
+            <span class="btn-icon">⚙️</span>
+            Full Settings
+          </button>
+        </div>
+      </div>
+      
+      <!-- LLM Status -->
+      <div class="section">
+        <h3>LLM Status</h3>
+        <div class="llm-status" id="llm-status">
+          <div class="status-item">
+            <span class="status-indicator" id="api-status"></span>
+            <span class="status-text" id="api-status-text">Checking...</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Keyboard Shortcuts -->
+      <div class="section">
+        <h3>Shortcuts</h3>
+        <div class="shortcuts">
+          <div class="shortcut-item">
+            <span class="shortcut-key">Alt + A</span>
+            <span class="shortcut-desc">Toggle AI Mode</span>
+          </div>
+          <div class="shortcut-item">
+            <span class="shortcut-key">Esc</span>
+            <span class="shortcut-desc">Close Modals</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer">
+      <div class="footer-links">
+        <a href="#" id="help-link">Help</a>
+        <a href="#" id="feedback-link">Feedback</a>
+      </div>
+    </div>
+  </div>
+  
+  <script src="popup.js"></script>
+</body>
+</html>

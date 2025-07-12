@@ -1,0 +1,57 @@
+{
+  "manifest_version": 3,
+  "name": "Zegoop: AI Cursor - Smart Text Selection",
+  "version": "1.0.0",
+  "description": "Dual-mode cursor extension with AI-powered text selection and LLM integration for instant explanations and simplifications.",
+  
+  "permissions": [
+    "storage",
+    "activeTab",
+    "contextMenus"
+  ],
+  
+  "host_permissions": [
+    "https://*/*",
+    "http://*/*"
+  ],
+  
+  "background": {
+    "service_worker": "background.js"
+  },
+  
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "css": ["content.css"],
+      "run_at": "document_end"
+    }
+  ],
+  
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "AI Cursor Settings",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  
+  "options_page": "options.html",
+  
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  
+  "web_accessible_resources": [
+    {
+      "resources": ["modal.html", "modal.css", "modal.js"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}

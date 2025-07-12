@@ -1,0 +1,462 @@
+/* Zegoop AI Cursor Extension - Content Script Styles */
+
+/* Global AI Mode Styling */
+/* Subtle visual cue that AI mode is active for body.ai-cursor-mode is handled by ::before pseudo-element */
+
+body.ai-cursor-mode::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #4CAF50, #2196F3, #4CAF50);
+  z-index: 10000;
+  animation: ai-mode-indicator 3s ease-in-out infinite;
+}
+
+@keyframes ai-mode-indicator {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.7; }
+}
+
+/* Cursor Mode Indicator */
+#ai-cursor-indicator {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 10001;
+  background: rgba(255, 255, 255, 0.95);
+  border: 2px solid #e0e0e0;
+  border-radius: 25px;
+  padding: 8px 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  user-select: none;
+  pointer-events: auto;
+  cursor: move;
+}
+
+#ai-cursor-indicator.ai-active {
+  background: rgba(76, 175, 80, 0.1);
+  border-color: #4CAF50;
+  color: #2E7D32;
+  animation: pulse-glow 2s infinite;
+}
+
+#ai-cursor-indicator.dragging {
+  transition: none;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  transform: scale(1.05);
+  z-index: 10002;
+}
+
+/* Add a subtle glow animation for AI mode */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+  50% {
+    box-shadow: 0 4px 20px rgba(76, 175, 80, 0.3);
+  }
+}
+
+.ai-cursor-icon {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mode-text {
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #757575;
+  transition: background-color 0.3s ease;
+}
+
+/* Action Menu */
+#ai-cursor-action-menu {
+  position: fixed;
+  z-index: 10002;
+  animation: fadeInUp 0.2s ease-out;
+}
+
+.action-menu {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  padding: 8px;
+  min-width: 160px;
+  border: 1px solid #e0e0e0;
+}
+
+.action-btn {
+  display: block;
+  width: 100%;
+  padding: 12px 16px;
+  border: none;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  transition: all 0.2s ease;
+  margin-bottom: 2px;
+}
+
+.action-btn:hover {
+  background: #f5f5f5;
+  color: #1976D2;
+}
+
+.action-btn:last-child {
+  margin-bottom: 0;
+}
+
+.cancel-btn {
+  color: #666 !important;
+  border-top: 1px solid #e0e0e0;
+  margin-top: 4px;
+  padding-top: 12px;
+}
+
+.cancel-btn:hover {
+  background: #f5f5f5 !important;
+  color: #333 !important;
+}
+
+/* Tooltip Styles */
+#ai-cursor-tooltip {
+  position: fixed;
+  z-index: 10001;
+  max-width: 300px;
+  animation: fadeInUp 0.2s ease-out;
+  pointer-events: none;
+}
+
+.tooltip-content {
+  background: #2c3e50;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  font-size: 13px;
+  line-height: 1.4;
+  border: 1px solid #34495e;
+}
+
+.tooltip-word {
+  font-weight: 600;
+  color: #3498db;
+  margin-bottom: 4px;
+  font-size: 14px;
+}
+
+.tooltip-definition {
+  color: #ecf0f1;
+}
+
+.tooltip-error {
+  color: #e74c3c;
+  font-style: italic;
+}
+
+.tooltip-loading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #bdc3c7;
+}
+
+.tooltip-spinner {
+  width: 12px;
+  height: 12px;
+  border: 2px solid #34495e;
+  border-top: 2px solid #3498db;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Modal Styles */
+#ai-cursor-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10003;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.modal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  backdrop-filter: blur(4px);
+}
+
+.modal-content {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  max-width: 600px;
+  width: 100%;
+  max-height: 80vh;
+  overflow: hidden;
+  animation: slideInUp 0.3s ease-out;
+}
+
+.modal-content.loading {
+  max-width: 300px;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.modal-content.error {
+  border-left: 4px solid #f44336;
+}
+
+.modal-header {
+  padding: 24px 24px 16px;
+  border-bottom: 1px solid #e0e0e0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-header h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #666;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.close-btn:hover {
+  background: #f5f5f5;
+  color: #333;
+}
+
+.modal-body {
+  padding: 24px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.original-text {
+  margin-bottom: 20px;
+  padding: 16px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border-left: 4px solid #2196F3;
+}
+
+.original-text strong {
+  color: #1976D2;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.original-text p {
+  margin: 8px 0 0;
+  font-style: italic;
+  color: #555;
+  line-height: 1.5;
+}
+
+.ai-response {
+  padding: 16px;
+  background: #f1f8e9;
+  border-radius: 8px;
+  border-left: 4px solid #4CAF50;
+}
+
+.ai-response strong {
+  color: #2E7D32;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.ai-response p {
+  margin: 8px 0 0;
+  color: #333;
+  line-height: 1.6;
+  font-size: 15px;
+}
+
+.modal-footer {
+  padding: 16px 24px 24px;
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+.copy-btn {
+  background: #2196F3;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.copy-btn:hover {
+  background: #1976D2;
+  transform: translateY(-1px);
+}
+
+.modal-footer .close-btn {
+  background: #f5f5f5;
+  color: #666;
+  border: 1px solid #e0e0e0;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  width: auto;
+  height: auto;
+}
+
+.modal-footer .close-btn:hover {
+  background: #e0e0e0;
+  color: #333;
+}
+
+/* Loading Spinner */
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #2196F3;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 20px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Selection Preview (for future enhancement) */
+.ai-selection-preview {
+  position: absolute;
+  border: 2px dashed #2196F3;
+  background: rgba(33, 150, 243, 0.1);
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  #ai-cursor-indicator {
+    top: 10px;
+    right: 10px;
+    padding: 6px 12px;
+    font-size: 11px;
+  }
+  
+  .modal-content {
+    margin: 10px;
+    max-width: calc(100% - 20px);
+  }
+  
+  .modal-header,
+  .modal-body,
+  .modal-footer {
+    padding: 16px;
+  }
+  
+  .action-menu {
+    min-width: 140px;
+  }
+  
+  .action-btn {
+    padding: 10px 14px;
+    font-size: 13px;
+  }
+
+  #ai-cursor-tooltip {
+    max-width: 250px;
+  }
+
+  .tooltip-content {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+
+  .tooltip-word {
+    font-size: 13px;
+  }
+}

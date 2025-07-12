@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Cursor - Settings</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="header-content">
+        <div class="logo">
+          <span class="logo-icon">🤖</span>
+          <h1>AI Cursor Settings</h1>
+        </div>
+        <div class="header-actions">
+          <button class="btn btn-secondary" id="reset-settings">Reset to Defaults</button>
+          <button class="btn btn-primary" id="save-settings">Save Settings</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <div class="settings-grid">
+        <!-- LLM Configuration -->
+        <section class="settings-section">
+          <h2>🧠 LLM Configuration</h2>
+          <div class="setting-group">
+            <label for="llm-provider">Choose your preferred LLM provider:</label>
+            <select id="llm-provider" class="form-control">
+              <option value="">Select a provider...</option>
+              <option value="openai">OpenAI (GPT-3.5/GPT-4)</option>
+              <option value="anthropic">Anthropic (Claude)</option>
+              <option value="gemini">Google (Gemini)</option>
+              <option value="grok">xAI (Grok)</option>
+            </select>
+          </div>
+
+          <!-- API Key Inputs -->
+          <div class="api-keys-section">
+            <div class="api-key-group" data-provider="openai">
+              <label for="openai-key">OpenAI API Key:</label>
+              <div class="input-group">
+                <input type="password" id="openai-key" class="form-control" placeholder="sk-...">
+                <button type="button" class="btn-toggle-visibility" data-target="openai-key">👁️</button>
+              </div>
+              <small class="help-text">Get your API key from <a href="https://platform.openai.com/api-keys" target="_blank">OpenAI Platform</a></small>
+            </div>
+
+            <div class="api-key-group" data-provider="anthropic">
+              <label for="anthropic-key">Anthropic API Key:</label>
+              <div class="input-group">
+                <input type="password" id="anthropic-key" class="form-control" placeholder="sk-ant-...">
+                <button type="button" class="btn-toggle-visibility" data-target="anthropic-key">👁️</button>
+              </div>
+              <small class="help-text">Get your API key from <a href="https://console.anthropic.com/" target="_blank">Anthropic Console</a></small>
+            </div>
+
+            <div class="api-key-group" data-provider="gemini">
+              <label for="gemini-key">Google Gemini API Key:</label>
+              <div class="input-group">
+                <input type="password" id="gemini-key" class="form-control" placeholder="AI...">
+                <button type="button" class="btn-toggle-visibility" data-target="gemini-key">👁️</button>
+              </div>
+              <small class="help-text">Get your API key from <a href="https://makersuite.google.com/app/apikey" target="_blank">Google AI Studio</a></small>
+            </div>
+
+            <div class="api-key-group" data-provider="grok">
+              <label for="grok-key">xAI Grok API Key:</label>
+              <div class="input-group">
+                <input type="password" id="grok-key" class="form-control" placeholder="xai-...">
+                <button type="button" class="btn-toggle-visibility" data-target="grok-key">👁️</button>
+              </div>
+              <small class="help-text">Get your API key from <a href="https://console.x.ai/" target="_blank">xAI Console</a></small>
+            </div>
+          </div>
+
+          <div class="test-section">
+            <button class="btn btn-outline" id="test-api">Test API Connection</button>
+            <div class="test-result" id="test-result"></div>
+          </div>
+        </section>
+
+        <!-- System Prompts -->
+        <section class="settings-section">
+          <h2>🎯 System Prompts</h2>
+          <p style="margin-bottom: 1.5rem; color: #666;">Customize how the AI responds to your requests. These prompts will be added to every AI request.</p>
+
+          <div class="setting-group">
+            <label for="global-prompt">Global System Prompt (applies to all actions):</label>
+            <textarea id="global-prompt" class="form-control" rows="3" placeholder="e.g., Keep responses under 50 words. Be concise and direct."></textarea>
+            <small class="help-text">This prompt will be applied to all AI requests regardless of action type.</small>
+          </div>
+
+          <div class="setting-group">
+            <label for="explain-prompt">Explain Action Prompt:</label>
+            <textarea id="explain-prompt" class="form-control" rows="2" placeholder="e.g., Explain in simple terms that a 12-year-old could understand."></textarea>
+            <small class="help-text">Additional instructions for the "Explain" action.</small>
+          </div>
+
+          <div class="setting-group">
+            <label for="simplify-prompt">Simplify Action Prompt:</label>
+            <textarea id="simplify-prompt" class="form-control" rows="2" placeholder="e.g., Use only common words. Keep it to one sentence."></textarea>
+            <small class="help-text">Additional instructions for the "Simplify" action.</small>
+          </div>
+
+          <div class="setting-group">
+            <label for="define-prompt">Define Action Prompt:</label>
+            <textarea id="define-prompt" class="form-control" rows="2" placeholder="e.g., Provide a brief definition in 10 words or less."></textarea>
+            <small class="help-text">Additional instructions for the "Define" action.</small>
+          </div>
+
+          <div class="setting-group">
+            <label for="tooltip-prompt">Tooltip System Prompt:</label>
+            <textarea id="tooltip-prompt" class="form-control" rows="2" placeholder="e.g., Provide brief, single-sentence definitions. Keep responses under 20 words."></textarea>
+            <small class="help-text">Additional instructions for hover tooltips that show word definitions.</small>
+          </div>
+
+          <div class="prompt-examples">
+            <h4>💡 Example System Prompts:</h4>
+            <ul style="margin: 0.5rem 0; padding-left: 1.5rem; color: #666; font-size: 0.875rem;">
+              <li><strong>Concise:</strong> "Answer in one sentence only."</li>
+              <li><strong>Simple:</strong> "Use simple words a child would understand."</li>
+              <li><strong>Academic:</strong> "Provide a scholarly explanation with examples."</li>
+              <li><strong>Casual:</strong> "Explain like you're talking to a friend."</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Behavior Settings -->
+        <section class="settings-section">
+          <h2>⚙️ Behavior Settings</h2>
+          
+          <div class="setting-group">
+            <div class="checkbox-group">
+              <label class="checkbox-label">
+                <input type="checkbox" id="auto-mode">
+                <span class="checkmark"></span>
+                Auto-enable AI mode on supported sites
+              </label>
+            </div>
+          </div>
+
+          <div class="setting-group">
+            <div class="checkbox-group">
+              <label class="checkbox-label">
+                <input type="checkbox" id="show-tooltips">
+                <span class="checkmark"></span>
+                Show helpful tooltips
+              </label>
+            </div>
+          </div>
+
+          <div class="setting-group">
+            <div class="checkbox-group">
+              <label class="checkbox-label">
+                <input type="checkbox" id="show-indicator">
+                <span class="checkmark"></span>
+                Show mode indicator on screen
+              </label>
+            </div>
+            <small class="help-text">Display a draggable indicator in the top-right corner showing current mode (AI/Standard)</small>
+          </div>
+
+          <div class="setting-group">
+            <label for="modal-position">Response modal position:</label>
+            <select id="modal-position" class="form-control">
+              <option value="center">Center of screen</option>
+              <option value="cursor">Near cursor</option>
+              <option value="top-right">Top right corner</option>
+            </select>
+          </div>
+
+          <div class="setting-group">
+            <label for="response-length">Response length preference:</label>
+            <select id="response-length" class="form-control">
+              <option value="short">Short (1-2 sentences)</option>
+              <option value="medium">Medium (paragraph)</option>
+              <option value="long">Detailed explanation</option>
+            </select>
+          </div>
+        </section>
+
+        <!-- Keyboard Shortcuts -->
+        <section class="settings-section">
+          <h2>⌨️ Keyboard Shortcuts</h2>
+          
+          <div class="shortcut-group">
+            <label for="toggle-shortcut">Toggle AI Mode:</label>
+            <div class="shortcut-input">
+              <input type="text" id="toggle-shortcut" class="form-control" readonly value="Alt+A">
+              <button class="btn btn-small" id="change-shortcut">Change</button>
+            </div>
+          </div>
+
+          <div class="shortcuts-help">
+            <h4>Default Shortcuts:</h4>
+            <ul>
+              <li><kbd>Alt + A</kbd> - Toggle between AI and standard cursor mode</li>
+              <li><kbd>Esc</kbd> - Close any open modals or menus</li>
+              <li><kbd>Right Click</kbd> - Context menu with AI options (when text is selected)</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Privacy & Data -->
+        <section class="settings-section">
+          <h2>🔒 Privacy & Data</h2>
+          
+          <div class="privacy-info">
+            <div class="info-box">
+              <h4>Your Privacy Matters</h4>
+              <ul>
+                <li>API keys are stored locally in your browser</li>
+                <li>Selected text is sent only to your chosen LLM provider</li>
+                <li>No data is collected or stored by this extension</li>
+                <li>All communication is encrypted (HTTPS)</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="setting-group">
+            <div class="checkbox-group">
+              <label class="checkbox-label">
+                <input type="checkbox" id="analytics-opt-out">
+                <span class="checkmark"></span>
+                Opt out of anonymous usage analytics
+              </label>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-links">
+          <a href="#" id="help-link">Help & Documentation</a>
+          <a href="#" id="github-link">GitHub Repository</a>
+          <a href="#" id="feedback-link">Report Issues</a>
+        </div>
+        <div class="footer-info">
+          <span>AI Cursor Extension v1.0.0</span>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Success/Error Messages -->
+  <div class="toast" id="toast">
+    <div class="toast-content">
+      <span class="toast-icon"></span>
+      <span class="toast-message"></span>
+    </div>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>
