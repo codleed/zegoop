@@ -2,9 +2,7 @@
 ## ✅ Step 1: Prepare the Extension Folder
 Make sure your Zegoop extension folder contains the following files (example structure):
 
-arduino
-Copy
-Edit
+
 Zegoop/
 ├── manifest.json
 ├── content.js
@@ -20,9 +18,6 @@ Open Google Chrome.
 
 In the address bar, type:
 
-arduino
-Copy
-Edit
 chrome://extensions
 and press Enter.
 
@@ -48,9 +43,6 @@ Visit any website and test the extension's functionality.
 
 For logs/errors, go to:
 
-arduino
-Copy
-Edit
 chrome://extensions
 → Zegoop → Background page / Inspect views
 🔄 Updating the Extension
